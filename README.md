@@ -1,0 +1,2 @@
+# wordy
+Updated Wordle solver
