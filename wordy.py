@@ -4,11 +4,13 @@ feedback = ""
 guess_list = []
 allowed_characters = "g,y,w"
 invalid = "Invalid information. Type it in again: "
+all_correct = "ggggg"
+all_wrong = "wwwww"
 
 
 # opens list of words
 try:
-    with open('my_project/words.txt') as f:
+    with open('wordy-main/words.txt') as f:
         for line in f:
             guess_list.append(line.strip())
 except FileNotFoundError:
@@ -29,11 +31,18 @@ for guesses in range(6):
     while True:
         information = input(
             "Type in the information about the word (g), (y), (w): ").lower()
-        if len(information) != 5 or not all(char in allowed_characters for char in information):
-            print(invalid)
-        else:
+        if (len(information) == 5 and all(char in allowed_characters for char in information)) or (len(information) == 1):
             break
+        else:
+            print(invalid)
 
+    if information == "g":
+        information = all_correct
+    elif information == "w":
+        information = all_wrong
+    else:
+        information = information
+    
     if information == "ggggg" and guesses == 0:
         print("WOW!!! you got today's worlde in only one guess!!!!")
         exit
