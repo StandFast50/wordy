@@ -39,6 +39,7 @@ for guesses in range(6):
         exit
     elif information == "ggggg":
         print("Congrats! You got today's worlde in", guesses+1, "guesses")
+        exit
         break
 
     temp_tuple = tuple(guess_list)
